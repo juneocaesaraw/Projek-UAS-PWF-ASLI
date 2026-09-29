@@ -8,17 +8,12 @@
 
 @foreach($books as $book)
     <div>
-        <h3>{{ $book['title'] }}</h3>
-        <p>Penulis: {{ $book['author'] }}</p>
-        <p>Tahun Terbit: {{ $book['year'] }}</p>
+        <h3>{{ $book->title }}</h3>
+        <p>Penulis: {{ $book->author }}</p>
+        <p>Tahun: {{ $book->year }}</p>
+        <p>Stok: {{ $book->stock }}</p>
     </div>
     <hr>
 @endforeach
-
-    @if($stock > 0)
-        <p>Buku tersedia: {{ $stock }}</p>
-    @else
-        <p>Buku sedang habis.</p>
-    @endif
 
 @endsection
