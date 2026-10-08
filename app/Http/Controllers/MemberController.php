@@ -13,7 +13,8 @@ class MemberController extends Controller
             'Budi',
             'Citra',
             'Dewi',
-            'Eko'
+            'Eko',
+            'Fina',
         ];
         return view('members.index', compact('members'));
     }
