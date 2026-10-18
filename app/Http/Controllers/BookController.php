@@ -30,14 +30,19 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        Book::create([
-            'title' => $request->title,
-            'author' => $request->author,
-            'year' => $request->year,
-            'stock' => $request->stock,
+        $validated = $request->validate
+        ([
+            'title' => 'required|string|max:255|unique:books,title|min:2',
+            'author' => 'required|string|max:255|min:2',
+            'year' => 'required|integer|min:1900|max:2026',
+            'stock' => 'required|integer|min:1|max:1000',
         ]);
 
-    return redirect()->route('books.index');
+        Book::create($validated);
+
+        return redirect()
+        ->route('books.index')
+        ->with('success', 'Data Buku Berhasil Ditambahkan.');
 
     }
 
@@ -71,7 +76,7 @@ class BookController extends Controller
             'stock' => $request->stock,
         ]);
 
-        return redirect()->route('books.index');
+        return redirect()->route('books.index')->with('success', 'Data Buku Berhasil Diubah.');
     }
 
     /**
@@ -81,6 +86,6 @@ class BookController extends Controller
     {
         $book->delete();
 
-        return redirect()->route('books.index');
+        return redirect()->route('books.index')->with('success', 'Data Buku Berhasil Dihapus.');
     }
 }

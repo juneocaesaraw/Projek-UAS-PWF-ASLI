@@ -32,7 +32,14 @@
                 name="title"
                 placeholder="Masukkan judul buku"
                 class="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm text-slate-800 placeholder:text-slate-400 shadow-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                value="{{ old('title') }}"
             >
+            @error('title')
+                <p class="text-sm text-red-600 mt-1">
+                    {{ $message }}
+                </p>
+            @enderror
+            
         </div>
 
         <div>
@@ -46,7 +53,13 @@
                 name="author"
                 placeholder="Masukkan nama penulis"
                 class="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm text-slate-800 placeholder:text-slate-400 shadow-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                value="{{ old('author') }}"
             >
+            @error('author')
+                <p class="text-sm text-red-600 mt-1">
+                    {{ $message }}
+                </p>
+            @enderror
         </div>
 
         <div>
@@ -60,7 +73,13 @@
                 name="year"
                 placeholder="Contoh: 2025"
                 class="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm text-slate-800 placeholder:text-slate-400 shadow-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                value="{{ old('year') }}"
             >
+            @error('year')
+                <p class="text-sm text-red-600 mt-1">
+                    {{ $message }}
+                </p>
+            @enderror
         </div>
 
         <div>
@@ -74,7 +93,13 @@
                 name="stock"
                 placeholder="Masukkan jumlah stok"
                 class="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm text-slate-800 placeholder:text-slate-400 shadow-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                value="{{ old('stock') }}"
             >
+            @error('stock')
+                <p class="text-sm text-red-600 mt-1">
+                    {{ $message }}
+                </p>
+            @enderror
         </div>
 
     </div>

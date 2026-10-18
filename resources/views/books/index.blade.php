@@ -5,6 +5,13 @@
 
 @section('content')
 
+@if (session('success'))
+    <div class="bg-green-100 border border-green-200 text-green-800 px-4 py-3 rounded-lg mb-6">
+        <p>{{ session('success') }}</p>
+    </div>
+
+@endif
+
 <!-- Header Halaman -->
 <div class="flex flex-col sm:flex-row sm:items-center
             sm:justify-between gap-4 mb-6">

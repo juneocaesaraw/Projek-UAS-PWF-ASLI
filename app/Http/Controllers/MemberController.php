@@ -3,24 +3,85 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Member;
 
 class MemberController extends Controller
 {
-      public function index()
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
     {
-        $members= [
-            'Andi',
-            'Budi',
-            'Citra',
-            'Dewi',
-            'Eko'
-        ];
+        $members = Member::all();
+
         return view('members.index', compact('members'));
     }
 
-    
-    public function show($id)
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
     {
-        return 'ID Member: ' . $id;
+        return view('members.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        Member::create($validated);
+
+        return redirect()
+            ->route('members.index')
+            ->with('success', 'Data Member Berhasil Ditambahkan.');
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(Member $member)
+    {
+        return view('members.show', compact('member'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Member $member)
+    {
+        return view('members.edit', compact('member'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Member $member)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        $member->update($validated);
+
+        return redirect()
+            ->route('members.index')
+            ->with('success', 'Data Member Berhasil Diubah.');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Member $member)
+    {
+        $member->delete();
+
+        return redirect()
+            ->route('members.index')
+            ->with('success', 'Data Member Berhasil Dihapus.');
     }
 }
