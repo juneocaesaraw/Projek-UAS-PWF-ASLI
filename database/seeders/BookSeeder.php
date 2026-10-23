@@ -44,4 +44,4 @@ class BookSeeder extends Seeder
             'stock' => 15,
         ]);
     }
-}
+} 
