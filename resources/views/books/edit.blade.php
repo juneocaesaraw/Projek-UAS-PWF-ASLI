@@ -81,6 +81,37 @@
                 class="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm text-slate-800 placeholder:text-slate-400 shadow-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
             >
         </div>
+        <div>
+            
+            <label for="category_id"
+                class="block text-sm font-medium text-slate-700 mb-2">
+                Kategori
+            </label>
+
+            <select
+                name="category_id"
+                id="category_id"
+                class="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm text-slate-800 shadow-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+            >
+                <option value="">Pilih kategori</option>
+
+                @foreach ($categories as $category)
+                    <option
+                        value="{{ $category->id }}"
+                        @selected(old('category_id', $book->category_id) == $category->id)
+                    >
+                        {{ $category->name }}
+                    </option>
+                @endforeach
+            </select>
+
+            @error('category_id')
+                <p class="text-sm text-red-600 mt-1">
+                    {{ $message }}
+                </p>
+            @enderror
+
+        </div>
 
     </div>
 

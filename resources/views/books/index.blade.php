@@ -72,6 +72,10 @@
                     <p class="text-xs text-slate-400 mt-1">
                         Stok: {{ $book->stock }} buku
                     </p>
+
+                    <p class="text-xs text-slate-400 mt-1">
+                        Kategori: {{ $book->category?->name ?? 'Belum ada kategori' }}
+                    </p>
                 </div>
 
             </div>
@@ -79,6 +83,7 @@
             <!-- Aksi Buku -->
             <div class="flex items-center gap-4 text-sm font-medium
                         shrink-0">
+                
 
                 <a href="{{ route('books.show', $book) }}"
                    class="text-blue-600 hover:text-blue-800 transition">

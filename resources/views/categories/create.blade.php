@@ -25,6 +25,7 @@
                    class="block text-sm font-medium text-slate-700 mb-2">
                 Nama Kategori
             </label>
+
             <input
                 type="text"
                 id="name"
@@ -33,7 +34,7 @@
                 class="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm text-slate-800 placeholder:text-slate-400 shadow-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
                 value="{{ old('name') }}"
             >
-            @error('name')
+            @error('category_id')
                 <p class="text-sm text-red-600 mt-1">
                     {{ $message }}
                 </p>
