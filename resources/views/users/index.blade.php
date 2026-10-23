@@ -2,108 +2,125 @@
 
 @section('title', 'Manajemen Pengguna')
 
-@section('header')
-    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        Manajemen Pengguna
-    </h2>
-@endsection
-
 @section('content')
-    <div class="py-6">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
-            @if (session('success'))
-                <div class="mb-4 p-4 bg-green-100 text-green-700 rounded">
-                    {{ session('success') }}
-                </div>
-            @endif
+@if (session('success'))
+    <div class="bg-green-100 border border-green-200 text-green-800 px-4 py-3 rounded-lg mb-6">
+        <p>{{ session('success') }}</p>
+    </div>
+@endif
 
-            @if (session('error'))
-                <div class="mb-4 p-4 bg-red-100 text-red-700 rounded">
-                    {{ session('error') }}
-                </div>
-            @endif
+@if (session('error'))
+    <div class="bg-red-100 border border-red-200 text-red-800 px-4 py-3 rounded-lg mb-6">
+        <p>{{ session('error') }}</p>
+    </div>
+@endif
 
-            <div class="bg-white shadow-sm rounded-lg p-6">
+<!-- Header Halaman -->
+<div class="flex flex-col sm:flex-row sm:items-center
+            sm:justify-between gap-4 mb-6">
 
-                <div class="flex justify-between items-center mb-4">
-                    <h3 class="text-lg font-semibold">
-                        Daftar Pengguna
-                    </h3>
+    <div>
+        <p class="text-sm font-medium text-blue-600 mb-2">
+            Library System / Users
+        </p>
 
-                    <a href="{{ route('users.create') }}"
-                       class="px-4 py-2 bg-blue-600 text-white rounded">
-                        + Tambah Pengguna
-                    </a>
-                </div>
+        <h2 class="text-2xl font-bold text-slate-900">
+            Manajemen Pengguna
+        </h2>
 
-                <div class="overflow-x-auto">
-                    <table class="w-full border-collapse border border-gray-300">
-                        <thead>
-                            <tr class="bg-gray-100">
-                                <th class="border p-3">No</th>
-                                <th class="border p-3">Nama</th>
-                                <th class="border p-3">Email</th>
-                                <th class="border p-3">Role</th>
-                                <th class="border p-3">Aksi</th>
-                            </tr>
-                        </thead>
+        <p class="text-sm text-slate-500 mt-1">
+            Kelola akun pengguna dan hak akses sistem perpustakaan.
+        </p>
+    </div>
 
-                        <tbody>
-                            @forelse ($users as $user)
-                                <tr>
-                                    <td class="border p-3">
-                                        {{ $loop->iteration }}
-                                    </td>
-                                    <td class="border p-3">
-                                        {{ $user->name }}
-                                    </td>
-                                    <td class="border p-3">
-                                        {{ $user->email }}
-                                    </td>
-                                    <td class="border p-3">
-                                        {{ ucfirst($user->role) }}
-                                    </td>
-                                    <td class="border p-3">
-                                        <div class="flex gap-2">
-                                            <a href="{{ route('users.show', $user) }}"
-                                               class="text-blue-600">
-                                                Detail
-                                            </a>
+    <a href="{{ route('users.create') }}"
+       class="inline-flex items-center justify-center gap-2
+              bg-blue-600 text-white px-4 py-2.5 rounded-lg
+              text-sm font-semibold shadow-sm
+              hover:bg-blue-700 transition">
+        <span class="text-lg leading-none">+</span>
+        Tambah Pengguna
+    </a>
 
-                                            <a href="{{ route('users.edit', $user) }}"
-                                               class="text-yellow-600">
-                                                Edit
-                                            </a>
+</div>
 
-                                            @if ($user->id !== auth()->id())
-                                                <form action="{{ route('users.destroy', $user) }}"
-                                                      method="POST"
-                                                      onsubmit="return confirm('Yakin ingin menghapus pengguna ini?')">
-                                                    @csrf
-                                                    @method('DELETE')
+<!-- Daftar Pengguna -->
+<div class="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
 
-                                                    <button type="submit"
-                                                            class="text-red-600">
-                                                        Hapus
-                                                    </button>
-                                                </form>
-                                            @endif
-                                        </div>
-                                    </td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="5" class="border p-3 text-center">
-                                        Belum ada pengguna.
-                                    </td>
-                                </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
-                </div>
+    <div class="px-5 py-4 border-b border-slate-200">
+        <h3 class="text-sm font-semibold text-slate-800">
+            Daftar Pengguna
+        </h3>
+    </div>
+
+    @forelse ($users as $user)
+
+        <div class="flex flex-col lg:flex-row lg:items-center
+                    justify-between gap-4 px-5 py-4
+                    border-b border-slate-100 last:border-b-0
+                    hover:bg-slate-50 transition">
+
+            <!-- Informasi Pengguna -->
+            <div class="min-w-0">
+                <h4 class="text-sm font-semibold text-slate-900">
+                    {{ $user->name }}
+                </h4>
+
+                <p class="text-sm text-slate-500 mt-1">
+                    {{ $user->email }}
+                </p>
+
+                <p class="text-xs text-slate-400 mt-1">
+                    Role:
+                    <span class="font-medium text-slate-600">
+                        {{ ucfirst($user->role) }}
+                    </span>
+                </p>
+            </div>
+
+            <!-- Aksi Pengguna -->
+            <div class="flex flex-wrap items-center gap-4
+                        text-sm font-medium shrink-0">
+
+                <a href="{{ route('users.show', $user) }}"
+                   class="text-blue-600 hover:text-blue-800 transition">
+                    Detail
+                </a>
+
+                <a href="{{ route('users.edit', $user) }}"
+                   class="text-slate-600 hover:text-blue-600 transition">
+                    Edit
+                </a>
+
+                @if ($user->id !== auth()->id())
+                    <form action="{{ route('users.destroy', $user) }}"
+                          method="POST"
+                          onsubmit="return confirm('Yakin ingin menghapus pengguna ini?')">
+                        @csrf
+                        @method('DELETE')
+
+                        <button type="submit"
+                                class="text-red-500 hover:text-red-700 transition">
+                            Hapus
+                        </button>
+                    </form>
+                @endif
 
             </div>
+
         </div>
-    </div>
+
+    @empty
+
+        <div class="px-5 py-8 text-center">
+            <p class="text-sm text-slate-500">
+                Belum ada pengguna.
+            </p>
+        </div>
+
+    @endforelse
+
+</div>
+
 @endsection
