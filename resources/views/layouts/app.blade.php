@@ -1,186 +1,127 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>@yield('title', 'Library System')</title>
-
-    <link rel="icon" href="/favicon.ico">
-
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <title>@yield('title', 'Sistem Informasi Perpustakaan')</title>
+    <!-- Bootstrap 5 CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome untuk Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        #sidebar {
+            min-height: 100vh;
+            background-color: #212529;
+            color: #fff;
+            transition: all 0.3s;
+        }
+        #sidebar .nav-link {
+            color: #adb5bd;
+            padding: 12px 20px;
+            margin-bottom: 4px;
+            border-radius: 6px;
+        }
+        #sidebar .nav-link:hover, #sidebar .nav-link.active {
+            color: #fff;
+            background-color: #0d6efd;
+        }
+        #sidebar .nav-link i {
+            width: 25px;
+        }
+        .main-content {
+            padding: 30px;
+        }
+        .card {
+            border: none;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+            border-radius: 10px;
+        }
+    </style>
 </head>
+<body>
 
-<body class="min-h-screen bg-slate-50 text-slate-800 antialiased">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block collapse px-3 py-4">
+                <a href="{{ route('dashboard') }}" class="d-flex align-items-center pb-3 mb-3 text-white text-decoration-none border-bottom">
+                    <i class="fa-solid fa-book-open-reader fa-2x me-2 text-primary"></i>
+                    <span class="fs-5 fw-bold">PERPUSDA</span>
+                </a>
+                
+                <!-- BAGIAN INI YANG DIUBAH AGAR BISA DIPENCET DAN TERHUBUNG KE ROUTE LARAVEL -->
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a href="{{ route('dashboard') }}" class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                            <i class="fa-solid fa-gauge"></i> Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('categories.index') }}" class="nav-link {{ request()->routeIs('categories.*') ? 'active' : '' }}">
+                            <i class="fa-solid fa-tags"></i> Kategori Buku
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('books.index') }}" class="nav-link {{ request()->routeIs('books.*') ? 'active' : '' }}">
+                            <i class="fa-solid fa-book"></i> Data Buku
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('members.index') }}" class="nav-link {{ request()->routeIs('members.*') ? 'active' : '' }}">
+                            <i class="fa-solid fa-users"></i> Data Anggota
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('borrowings.index') }}" class="nav-link {{ request()->routeIs('borrowings.*') ? 'active' : '' }}">
+                            <i class="fa-solid fa-right-left"></i> Peminjaman
+                        </a>
+                    </li>
+                </ul>
+                <!-- AKHIR BAGIAN YANG DIUBAH -->
 
-    <div class="min-h-screen flex flex-col">
-
-        <!-- ================= HEADER ================= -->
-        <header class="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur">
-
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-
-                <div class="flex flex-col gap-4 py-4 sm:flex-row sm:items-center sm:justify-between">
-
-                    <!-- Logo -->
-                    <a href="/dashboard" class="flex items-center gap-3 group">
-
-                        <div class="flex h-11 w-11 items-center justify-center rounded-xl
-                                    bg-gradient-to-br from-blue-700 to-indigo-700
-                                    text-xl text-white shadow-md shadow-blue-200
-                                    transition group-hover:scale-105">
-                            📚
-                        </div>
-
-                        <div>
-                            <p class="text-xs font-semibold uppercase tracking-[0.2em] text-blue-600">
-                                Library
-                            </p>
-
-                            <h1 class="text-xl font-bold tracking-tight text-slate-900">
-                                System
-                            </h1>
-                        </div>
-
+                <hr class="text-secondary mt-5">
+                <div class="dropdown">
+                    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="https://ui-avatars.com/api/?name=Admin+Perpus&background=0d6efd&color=fff" alt="" width="32" height="32" class="rounded-circle me-2">
+                        <strong>Administrator</strong>
                     </a>
+                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                        <li><a class="dropdown-item" href="#">Profil</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item text-danger" href="#">Logout</a></li>
+                    </ul>
+                </div>
+            </nav>
 
-
-                    <!-- Navigation -->
-                    <nav class="flex flex-wrap items-center gap-1 rounded-xl
-                                border border-slate-200 bg-slate-50 p-1">
-
-                        @php
-                            $navItems = [
-                                ['label' => 'Dashboard', 'url' => '/dashboard'],
-                                ['label' => 'Books', 'url' => '/books'],
-                                ['label' => 'Categories', 'url' => '/categories'],
-                                ['label' => 'Members', 'url' => '/members'],
-                            ];
-                        @endphp
-
-                        @foreach ($navItems as $item)
-
-                            @php
-                                $isActive = request()->path() === ltrim($item['url'], '/');
-                            @endphp
-
-                            <a
-                                href="{{ $item['url'] }}"
-                                class="rounded-lg px-4 py-2 text-sm font-medium transition
-
-                                {{ $isActive
-                                    ? 'bg-blue-600 text-white shadow-sm shadow-blue-200'
-                                    : 'text-slate-600 hover:bg-white hover:text-blue-700'
-                                }}"
-                            >
-                                {{ $item['label'] }}
-                            </a>
-
-                        @endforeach
-
-                    </nav>
-
+            <!-- Main Content -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 main-content">
+                <!-- Top Navbar Mobile Toggle / Breadcrumb -->
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h3">@yield('header-title', 'Dashboard')</h1>
+                    <div class="btn-toolbar mb-2 mb-md-0">
+                        <span class="text-muted small">Sistem Informasi Perpustakaan v1.0</span>
+                    </div>
                 </div>
 
-            </div>
-
-        </header>
-
-
-        <!-- ================= MAIN CONTENT ================= -->
-
-        <main class="flex-1">
-
-            <div class="max-w-6xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
-
-                <!-- Page Container -->
-                <div class="overflow-hidden rounded-2xl border border-slate-200
-                            bg-white shadow-sm">
-
-                    <!-- Page Header -->
-                    <div class="border-b border-slate-200
-                                bg-gradient-to-r from-blue-50 via-white to-indigo-50
-                                px-6 py-6 sm:px-8">
-
-                        <div class="flex flex-col gap-4 sm:flex-row
-                                    sm:items-center sm:justify-between">
-
-                            <div>
-
-                                <p class="text-xs font-semibold uppercase
-                                          tracking-[0.2em] text-blue-600">
-                                    Library Management
-                                </p>
-
-                                <h2 class="mt-1 text-2xl font-bold tracking-tight
-                                           text-slate-900">
-                                    @yield('title', 'Dashboard')
-                                </h2>
-
-                                <p class="mt-1 text-sm text-slate-500">
-                                    Kelola data perpustakaan dengan mudah dan terorganisir.
-                                </p>
-
-                            </div>
-
-                            <!-- Optional Button -->
-                            @hasSection('action')
-                                @yield('action')
-                            @endif
-
-                        </div>
-
+                <!-- Alert / Flash Message -->
+                @if(session('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('success') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
+                @endif
 
-
-                    <!-- Page Content -->
-                    <div class="px-6 py-6 sm:px-8">
-
-                        @yield('content')
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </main>
-
-
-        <!-- ================= FOOTER ================= -->
-
-        <footer class="border-t border-slate-200 bg-slate-900">
-
-            <div class="max-w-6xl mx-auto px-4 py-6
-                        sm:px-6 lg:px-8">
-
-                <div class="flex flex-col items-center
-                            justify-between gap-2
-                            text-center sm:flex-row sm:text-left">
-
-                    <div>
-                        <p class="text-sm font-medium text-white">
-                            📚 Library System
-                        </p>
-
-                        <p class="text-xs text-slate-400 mt-1">
-                            Sistem manajemen perpustakaan sederhana.
-                        </p>
-                    </div>
-
-                    <p class="text-xs text-slate-400">
-                        &copy; {{ date('Y') }} Library System
-                    </p>
-
-                </div>
-
-            </div>
-
-        </footer>
-
+                <!-- Content Body -->
+                @yield('content')
+            </main>
+        </div>
     </div>
 
+    <!-- Bootstrap 5 JS Bundle CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-```
