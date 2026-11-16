@@ -21,10 +21,10 @@
                 bg-slate-50 px-4 py-8">
 
         <!-- Logo Laravel Breeze -->
-        <a href="/" class="mb-6">
-            <x-application-logo
-                class="w-16 h-16 fill-current text-blue-600"
-            />
+        <a href="/">
+            <img src="{{ asset('images/library-logo.png') }}"
+                alt="Library System"
+                class="h-24 w-auto mx-auto object-contain">
         </a>
 
         <!-- Form Container -->

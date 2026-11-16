@@ -29,14 +29,16 @@
         </p>
     </div>
 
-    <a href="{{ route('categories.create') }}"
-       class="inline-flex items-center justify-center gap-2
-              bg-blue-600 text-white px-4 py-2.5 rounded-lg
-              text-sm font-semibold shadow-sm
-              hover:bg-blue-700 transition">
-        <span class="text-lg leading-none">+</span>
-        Tambah Kategori
-    </a>
+    @if(auth()->user()->role === 'admin')
+        <a href="{{ route('categories.create') }}"
+           class="inline-flex items-center justify-center gap-2
+                  bg-blue-600 text-white px-4 py-2.5 rounded-lg
+                  text-sm font-semibold shadow-sm
+                  hover:bg-blue-700 transition">
+            <span class="text-lg leading-none">+</span>
+            Tambah Kategori
+        </a>
+    @endif
 
 </div>
 
@@ -72,22 +74,26 @@
                     Detail
                 </a>
 
-                <a href="{{ route('categories.edit', $category) }}"
-                   class="text-slate-600 hover:text-blue-600 transition">
-                    Edit
-                </a>
+                @if(auth()->user()->role === 'admin')
 
-                <form action="{{ route('categories.destroy', $category) }}"
-                      method="POST"
-                      onsubmit="return confirm('Apakah kamu yakin ingin menghapus kategori ini?')">
-                    @csrf
-                    @method('DELETE')
+                    <a href="{{ route('categories.edit', $category) }}"
+                       class="text-slate-600 hover:text-blue-600 transition">
+                        Edit
+                    </a>
 
-                    <button type="submit"
-                            class="text-red-500 hover:text-red-700 transition">
-                        Hapus
-                    </button>
-                </form>
+                    <form action="{{ route('categories.destroy', $category) }}"
+                          method="POST"
+                          onsubmit="return confirm('Apakah kamu yakin ingin menghapus kategori ini?')">
+                        @csrf
+                        @method('DELETE')
+
+                        <button type="submit"
+                                class="text-red-500 hover:text-red-700 transition">
+                            Hapus
+                        </button>
+                    </form>
+
+                @endif
 
             </div>
 

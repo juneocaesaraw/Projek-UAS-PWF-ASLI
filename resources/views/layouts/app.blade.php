@@ -62,6 +62,13 @@
                        {{ request()->is('members*') ? 'text-blue-700 bg-blue-50' : 'text-slate-600 hover:text-blue-700 hover:bg-slate-50' }}">
                         Members
                     </a>
+ 
+                    <a href="{{ route('borrowings.index') }}"
+                    class="px-4 py-2 rounded-lg transition duration-200
+                    {{ request()->is('borrowings*') ? 'text-blue-700 bg-blue-50' : 'text-slate-600 hover:text-blue-700 hover:bg-slate-50' }}">
+                        Borrowings
+                    </a>
+
                 @endif
 
                 @if(auth()->check() && auth()->user()->role === 'admin')
