@@ -2,39 +2,23 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Member;
 
 class MemberSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
-  public function run(): void
+    public function run(): void
     {
-        Member::create([
-            'name' => 'Andi',
-        ]);
+        Member::firstOrCreate(['name' => 'Andi']);
 
-        Member::create([
-            'name' => 'Budi',
-        ]);
+        Member::firstOrCreate(['name' => 'Budi']);
 
-        Member::create([
-            'name' => 'Citra',
-        ]);
+        Member::firstOrCreate(['name' => 'Citra']);
 
-        Member::create([
-            'name' => 'Dewi',
-        ]);
+        Member::firstOrCreate(['name' => 'Dewi']);
 
-        Member::create([
-            'name' => 'Eko',
-        ]);
+        Member::firstOrCreate(['name' => 'Eko']);
 
-        Member::create([
-            'name' => 'Fajar',
-        ]);
+        Member::firstOrCreate(['name' => 'Fajar']);
     }
 }
