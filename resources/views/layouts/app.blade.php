@@ -109,14 +109,11 @@
     </header>
 
     <!-- Main Content -->
-    <main class="max-w-7xl mx-auto px-6 lg:px-8 py-8 w-full flex-1">
-
-        <div class="bg-white rounded-2xl border border-slate-200
-                    shadow-sm p-5 sm:p-8 min-h-96">
+        <main class="max-w-7xl mx-auto px-6 lg:px-8 py-8 w-full flex-1">
 
             @yield('content')
 
-        </div>
+        </main>
 
     </main>
 
