@@ -32,7 +32,7 @@
             <a href="{{ route('dashboard') }}" class="flex items-center gap-3">
                 <div>
                     <h1 class="text-xl font-bold tracking-tight text-slate-900">
-                        Library System
+                        SiPustaka
                     </h1>
                     <p class="text-xs text-slate-500 mt-1">
                         Library Information System

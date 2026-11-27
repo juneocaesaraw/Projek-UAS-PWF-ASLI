@@ -11,8 +11,8 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $title = 'Library System Dashboard';
-        $description = 'welcome to the Library System Dashboard, where you can manage books, members, categories, and borrowing transactions efficiently.';
+        $title = 'SiPustaka';
+        $description = 'welcome to the SiPustaka Dashboard, where you can manage books, members, categories, and borrowing transactions efficiently.';
 
         // Menghitung total judul buku
         $books = Book::count();
