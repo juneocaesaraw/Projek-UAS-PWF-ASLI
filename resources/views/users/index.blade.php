@@ -26,7 +26,7 @@
     <div>
         {{-- Breadcrumb untuk menunjukkan posisi halaman --}}
         <p class="text-sm font-medium text-blue-600 mb-2">
-            Library System / Users
+            SiPustaka / Users
         </p>
 
         <h2 class="text-2xl font-bold text-slate-900">

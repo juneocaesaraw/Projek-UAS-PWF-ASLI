@@ -11,7 +11,7 @@
 
     {{-- Menampilkan breadcrumb sebagai penanda lokasi halaman --}}
     <p class="text-sm text-slate-500 mb-2">
-        Library System / Categories / Details
+        SiPustaka / Categories / Details
     </p>
 
     {{-- Judul halaman --}}

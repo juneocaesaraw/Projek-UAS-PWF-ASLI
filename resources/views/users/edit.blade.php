@@ -7,9 +7,7 @@
 
 {{-- Container utama halaman edit pengguna --}}
 <div class="bg-white rounded-xl border border-slate-200 p-6">
-
-    {{-- Breadcrumb untuk menunjukkan posisi halaman --}}
-    <p class="text-sm text-slate-500 mb-2">Library System / Users / Edit</p>
+    <p class="text-sm text-slate-500 mb-2">SiPustaka / Users / Edit</p>
 
     <h2 class="text-2xl font-bold text-slate-900 mb-6">
         Edit User

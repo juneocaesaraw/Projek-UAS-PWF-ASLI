@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Library System') }}</title>
+    <title>{{ config('app.name', 'SiPustaka') }}</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -22,8 +22,8 @@
 
         <!-- Logo Laravel Breeze -->
         <a href="/">
-            <img src="{{ asset('images/library-logo.png') }}"
-                alt="Library System"
+            <img src="{{ asset('images/sipustaka-logo.png') }}"
+                alt="SiPustaka"
                 class="h-24 w-auto mx-auto object-contain">
         </a>
 
@@ -38,7 +38,7 @@
 
         <!-- Footer -->
         <p class="text-xs text-slate-400 text-center mt-6">
-            &copy; {{ date('Y') }} Library System
+            &copy; {{ date('Y') }} SiPustaka. All rights reserved.
         </p>
 
     </div>

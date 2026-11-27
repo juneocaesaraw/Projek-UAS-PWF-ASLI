@@ -29,7 +29,7 @@
                 </h2>
 
                 <p class="text-sm text-slate-500 mt-1">
-                    {{ ucfirst($user->role) }} / Library System
+                    {{ ucfirst($user->role) }} / SiPustaka
                 </p>
 
                 <p class="text-sm text-slate-400 mt-1">

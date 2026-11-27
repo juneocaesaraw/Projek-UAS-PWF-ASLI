@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 
 {{-- Mengatur judul halaman yang ditampilkan pada browser --}}
@@ -8,7 +7,7 @@
 
     {{-- Bagian header dashboard yang menampilkan breadcrumb, judul, dan deskripsi halaman --}}
     <div class="mb-8">
-        <p class="text-sm text-slate-500 mb-2">Library System / Dashboard</p>
+        <p class="text-sm text-slate-500 mb-2">SiPustaka / Dashboard</p>
         <h2 class="text-3xl font-bold text-slate-900">{{ $title }}</h2>
         <p class="text-slate-500 mt-2">{{ $description }}</p>
     </div>

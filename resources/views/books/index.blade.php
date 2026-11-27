@@ -20,7 +20,7 @@
     <div>
         {{-- Menampilkan lokasi halaman saat ini --}}
         <p class="text-sm font-medium text-blue-600 mb-2">
-            Library System / Books
+            SiPustaka / Books
         </p>
 
         {{-- Judul utama halaman --}}
