@@ -7,7 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     {{-- Mengatur judul halaman yang dapat disesuaikan melalui setiap halaman --}}
-    <title>@yield('title', 'Library System')</title>
+    <title>@yield('title', 'SiPustaka')</title>
 
     {{-- Mengatur favicon atau ikon website --}}
     <link rel="icon" href="{{ asset('favicon.ico') }}">
@@ -35,7 +35,7 @@
                         SiPustaka
                     </h1>
                     <p class="text-xs text-slate-500 mt-1">
-                        Library Information System
+                        Sistem Informasi Perpustakaan
                     </p>
                 </div>
             </a>
@@ -143,12 +143,12 @@
 
             {{-- Menampilkan tahun secara otomatis dan nama aplikasi --}}
             <p>
-                &copy; {{ date('Y') }} Library System
+                &copy; {{ date('Y') }} SiPustaka
             </p>
 
             {{-- Deskripsi singkat aplikasi --}}
             <p>
-                Library Information System
+                Sistem Informasi Perpustakaan
             </p>
 
         </div>
