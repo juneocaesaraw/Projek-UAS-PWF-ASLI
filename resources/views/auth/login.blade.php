@@ -1,31 +1,35 @@
+
 <x-guest-layout>
 
+    {{-- Bagian header untuk menampilkan judul dan deskripsi halaman login --}}
     <div class="mb-8 text-center">
         <div class="mt-6">
             <h2 class="text-xl font-bold text-slate-900">
-                Selamat Datang
+                Welcome Back
             </h2>
 
             <p class="text-sm text-slate-500 mt-2">
-                Silakan masuk ke akun kamu untuk melanjutkan.
+                Please sign in to your account to continue.
             </p>
         </div>
     </div>
 
-    <!-- Session Status -->
+    {{-- Menampilkan pesan status dari session, misalnya notifikasi setelah proses tertentu --}}
     <x-auth-session-status
         class="mb-4"
         :status="session('status')"
     />
 
+    {{-- Form login yang mengirimkan data menggunakan metode POST ke route login --}}
     <form method="POST" action="{{ route('login') }}">
+        {{-- Token CSRF untuk melindungi form dari Cross-Site Request Forgery --}}
         @csrf
 
-        <!-- Email Address -->
+        {{-- Bagian input email untuk memasukkan alamat email pengguna --}}
         <div>
             <x-input-label
                 for="email"
-                :value="__('Email')"
+                :value="__('Email Address')"
                 class="text-sm font-medium text-slate-700"
             />
 
@@ -39,16 +43,17 @@
                 required
                 autofocus
                 autocomplete="username"
-                placeholder="Masukkan email kamu"
+                placeholder="Enter your email address"
             />
 
+            {{-- Menampilkan pesan kesalahan jika input email tidak valid --}}
             <x-input-error
                 :messages="$errors->get('email')"
                 class="mt-2"
             />
         </div>
 
-        <!-- Password -->
+        {{-- Bagian input password untuk memasukkan kata sandi akun --}}
         <div class="mt-5">
             <x-input-label
                 for="password"
@@ -64,16 +69,17 @@
                 name="password"
                 required
                 autocomplete="current-password"
-                placeholder="Masukkan password kamu"
+                placeholder="Enter your password"
             />
 
+            {{-- Menampilkan pesan kesalahan jika input password tidak valid --}}
             <x-input-error
                 :messages="$errors->get('password')"
                 class="mt-2"
             />
         </div>
 
-        <!-- Remember Me -->
+        {{-- Opsi Remember Me untuk mengingat sesi login pengguna --}}
         <div class="block mt-5">
             <label for="remember_me" class="inline-flex items-center">
                 <input
@@ -85,12 +91,12 @@
                 >
 
                 <span class="ms-2 text-sm text-slate-600">
-                    {{ __('Remember me') }}
+                    {{ __('Remember Me') }}
                 </span>
             </label>
         </div>
 
-        <!-- Actions -->
+        {{-- Tombol untuk mengirimkan email dan password ke proses autentikasi --}}
         <div class="mt-6">
             <x-primary-button
                 class="w-full justify-center rounded-lg bg-blue-600
@@ -98,11 +104,11 @@
                        hover:bg-blue-700 focus:bg-blue-700
                        active:bg-blue-800"
             >
-                {{ __('Log in') }}
+                {{ __('Sign In') }}
             </x-primary-button>
         </div>
 
-        <!-- Forgot Password -->
+        {{-- Menampilkan tautan pemulihan password jika fitur tersebut tersedia --}}
         @if (Route::has('password.request'))
             <div class="mt-5 text-center">
                 <a
@@ -113,7 +119,7 @@
                            rounded"
                     href="{{ route('password.request') }}"
                 >
-                    {{ __('Forgot your password?') }}
+                    {{ __('Forgot Password?') }}
                 </a>
             </div>
         @endif

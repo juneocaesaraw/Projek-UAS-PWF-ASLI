@@ -1,16 +1,18 @@
 
 @extends('layouts.app')
 
-@section('title', 'Profil Pengguna')
+@section('title', 'User Profile')
 
 @section('content')
 
+{{-- Container utama halaman profil pengguna --}}
 <div class="space-y-5">
 
-    {{-- PROFILE HEADER --}}
+    {{-- Bagian header profil yang menampilkan identitas pengguna --}}
     <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-6 sm:p-8">
         <div class="flex items-center justify-center gap-5">
 
+            {{-- Avatar menggunakan huruf pertama dari nama pengguna --}}
             <div class="w-20 h-20 rounded-full bg-blue-100
                         flex items-center justify-center shrink-0
                         border-4 border-white shadow-sm">
@@ -20,6 +22,7 @@
                 </span>
             </div>
 
+            {{-- Menampilkan nama, role, dan email pengguna --}}
             <div>
                 <h2 class="text-xl font-bold text-slate-800">
                     {{ $user->name }}
@@ -38,13 +41,14 @@
     </div>
 
 
-    {{-- BASIC INFO --}}
+    {{-- Bagian informasi dasar dan pengaturan data profil --}}
     <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-6 sm:p-8">
 
         <h3 class="text-lg font-semibold text-slate-800 mb-8">
-            Basic Info
+            Basic Information
         </h3>
 
+        {{-- Memanggil partial untuk memperbarui informasi profil pengguna --}}
         @include('profile.partials.update-profile-information-form', [
             'user' => $user
         ])
@@ -52,7 +56,7 @@
     </div>
 
 
-    {{-- ACCOUNT INFORMATION --}}
+    {{-- Bagian informasi akun pengguna --}}
     <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-6 sm:p-8">
 
         <h3 class="text-lg font-semibold text-slate-800 mb-6">
@@ -61,6 +65,7 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
 
+            {{-- Menampilkan role pengguna --}}
             <div>
                 <p class="text-sm text-slate-500 mb-1">
                     User Role
@@ -71,6 +76,7 @@
                 </p>
             </div>
 
+            {{-- Menampilkan status akun pengguna --}}
             <div>
                 <p class="text-sm text-slate-500 mb-1">
                     Account Status
@@ -82,6 +88,7 @@
                 </span>
             </div>
 
+            {{-- Menampilkan alamat email yang terdaftar --}}
             <div>
                 <p class="text-sm text-slate-500 mb-1">
                     Registered Email
@@ -92,6 +99,7 @@
                 </p>
             </div>
 
+            {{-- Menampilkan tanggal pembuatan akun --}}
             <div>
                 <p class="text-sm text-slate-500 mb-1">
                     Member Since
@@ -106,18 +114,20 @@
 
         </div>
 
+        {{-- Informasi mengenai hak akses pengelolaan role --}}
         <p class="text-xs text-slate-400 mt-5">
-            Informasi role hanya dapat dikelola oleh Admin melalui User Management.
+            User roles can only be managed by the Admin through User Management.
         </p>
 
     </div>
 
 
-    {{-- CHANGE PASSWORD --}}
+    {{-- Bagian pengaturan keamanan dan perubahan password --}}
     <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-6 sm:p-8">
 
         <div class="flex items-center gap-3 mb-6">
 
+            {{-- Ikon keamanan menggunakan SVG --}}
             <div class="w-10 h-10 rounded-lg bg-blue-50
                         flex items-center justify-center">
                 <svg class="w-5 h-5 text-blue-700"
@@ -130,28 +140,31 @@
                 </svg>
             </div>
 
+            {{-- Judul dan deskripsi pengaturan keamanan --}}
             <div>
                 <h3 class="text-lg font-semibold text-slate-800">
                     Security Settings
                 </h3>
 
                 <p class="text-sm text-slate-500">
-                    Ubah password akun kamu.
+                    Change your account password.
                 </p>
             </div>
 
         </div>
 
+        {{-- Memanggil partial untuk memperbarui password pengguna --}}
         @include('profile.partials.update-password-form')
 
     </div>
 
 
-    {{-- DELETE ACCOUNT --}}
+    {{-- Bagian penghapusan akun pengguna --}}
     <div class="bg-white rounded-2xl border border-red-100 shadow-sm p-6 sm:p-8">
 
         <div class="flex items-center gap-3 mb-6">
 
+            {{-- Ikon peringatan penghapusan akun menggunakan SVG --}}
             <div class="w-10 h-10 rounded-lg bg-red-50
                         flex items-center justify-center">
                 <svg class="w-5 h-5 text-red-600"
@@ -164,18 +177,20 @@
                 </svg>
             </div>
 
+            {{-- Judul dan deskripsi penghapusan akun --}}
             <div>
                 <h3 class="text-lg font-semibold text-red-700">
                     Delete Account
                 </h3>
 
                 <p class="text-sm text-slate-500">
-                    Penghapusan akun secara permanen.
+                    Permanently delete your account.
                 </p>
             </div>
 
         </div>
 
+        {{-- Memanggil partial untuk proses penghapusan akun --}}
         @include('profile.partials.delete-user-form')
 
     </div>
